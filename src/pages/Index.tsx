@@ -1,18 +1,40 @@
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import ProductCarousel from "@/components/ProductCarousel";
+import JobListing from "@/components/JobListing";
 import heroImage from "@/assets/hero-image.jpg";
-import { ArrowRight, Shield, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const Index = () => {
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Thank you for your message! We'll get back to you soon.");
+    setContactForm({ name: "", email: "", subject: "", message: "" });
+  };
+
+  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setContactForm({ ...contactForm, [e.target.name]: e.target.value });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col scroll-smooth">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
+      <section id="home" className="relative overflow-hidden py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -25,16 +47,22 @@ const Index = () => {
                 We empower you to be frugal, not stingy — making informed, intentional choices without compromise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/product">
-                  <Button size="lg" className="w-full sm:w-auto">
+                <a href="#product">
+                  <Button size="lg" className="w-full sm:w-auto" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
+                  }}>
                     Explore Product <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </Link>
-                <Link to="/about">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                </a>
+                <a href="#about">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }}>
                     Learn More
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="relative">
@@ -48,75 +76,321 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Frugality?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We believe that every drop counts. Financial awareness is not a luxury, but a necessity.
+      {/* About Section */}
+      <section id="about" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">About Us</h2>
+          
+          <div className="space-y-8 text-lg leading-relaxed">
+            <div className="text-center mb-12">
+              <span className="text-6xl mb-4 inline-block">🐿️</span>
+            </div>
+
+            <p>
+              We at <span className="font-semibold text-primary">Frugality Fintech</span> are a small team, 
+              a modest setup, and a clear vision: to redefine how individuals engage with their finances — 
+              with clarity, purpose, and control.
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-background p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <TrendingUp className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Smart Decisions</h3>
-              <p className="text-muted-foreground">
-                Make informed, intentional financial choices backed by intelligent data and insights.
-              </p>
+            <p>
+              Our journey is rooted in a simple belief: that <span className="font-semibold">financial awareness 
+              is not a luxury, but a necessity.</span>
+            </p>
+
+            <p>
+              We draw inspiration from the squirrel — a symbol of foresight and preparation — holding its 
+              acorn as a reminder that saving during times of abundance is the key to long-term resilience.
+            </p>
+
+            <div className="bg-background border p-8 rounded-xl my-12">
+              <h3 className="text-2xl font-semibold mb-6 text-center">We Believe</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 text-xl">•</span>
+                  <span>That every drop counts.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 text-xl">•</span>
+                  <span>That every payment is a decision.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 text-xl">•</span>
+                  <span>That every card swipe is a strategy.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-3 text-xl">•</span>
+                  <span>And that every rupee deserves its return.</span>
+                </li>
+              </ul>
             </div>
 
-            <div className="bg-background p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                <Shield className="h-6 w-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Trust & Security</h3>
-              <p className="text-muted-foreground">
-                Your financial data is protected with enterprise-grade security and complete transparency.
-              </p>
-            </div>
+            <p>
+              Our mission is to empower individuals to be <span className="font-semibold">frugal, not stingy</span> — 
+              to make informed, intentional choices without compromise.
+            </p>
 
-            <div className="bg-background p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                <Users className="h-6 w-6 text-accent" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Community First</h3>
-              <p className="text-muted-foreground">
-                Join a community committed to building better financial habits, one penny at a time.
+            <p>
+              We are building a platform that enables smarter financial behaviour, supported by data, 
+              driven by intelligence, and anchored in trust.
+            </p>
+
+            <div className="bg-secondary/5 border-l-4 border-secondary p-6 rounded-r-xl my-12">
+              <p className="text-xl font-medium">
+                At Frugality we are building not just a product. We intend to build a mindset — 
+                one that transforms how people think about money, plan for the future, and take control 
+                of their financial journey, one penny at a time.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Ready to Transform Your Financial Future?
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Take the first step towards financial clarity and control.
+      {/* Product Section */}
+      <section id="product" className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Product</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              We're building an exceptional financial awareness platform. Here's a preview of what's coming.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/contact">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Get in Touch
+          </div>
+          <ProductCarousel />
+          <div className="text-center mt-12">
+            <p className="text-xl font-semibold text-muted-foreground mb-4">
+              Currently Under Development
+            </p>
+            <p className="text-muted-foreground mb-8">
+              Stay tuned for a platform that will transform how you engage with your finances.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Careers Section */}
+      <section id="careers" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Join Our Team</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Help us build the future of financial awareness. We're looking for passionate 
+              individuals who believe in making finance accessible to everyone.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <JobListing />
+          </div>
+        </div>
+      </section>
+
+      {/* Partnerships Section */}
+      <section id="partnerships" className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Partner With Us</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Together, we can empower millions to take control of their financial future. 
+              Let's build something meaningful.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Handshake className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Strategic Alignment</h3>
+              <p className="text-sm text-muted-foreground">
+                Partner with a team that shares your vision for financial empowerment
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Target className="h-8 w-8 text-secondary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Mutual Growth</h3>
+              <p className="text-sm text-muted-foreground">
+                Grow together through collaborative innovation and shared success
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Innovation First</h3>
+              <p className="text-sm text-muted-foreground">
+                Leverage cutting-edge technology to deliver exceptional value
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Globe className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Market Reach</h3>
+              <p className="text-sm text-muted-foreground">
+                Access our growing user base and expand your impact
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Support/FAQ Section */}
+      <section id="support" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Support</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Have questions? We're here to help you on your financial journey.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-lg text-muted-foreground mb-8">
+              Our support team is available to assist you with any questions about our platform, 
+              features, or how to get started on your journey to financial clarity.
+            </p>
+            <Button size="lg" onClick={() => {
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              Contact Support
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Have questions or want to learn more about Frugality Fintech? We'd love to hear from you.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={contactForm.name}
+                    onChange={handleContactChange}
+                    required
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={contactForm.email}
+                    onChange={handleContactChange}
+                    required
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    value={contactForm.subject}
+                    onChange={handleContactChange}
+                    required
+                    placeholder="How can we help?"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={contactForm.message}
+                    onChange={handleContactChange}
+                    required
+                    placeholder="Tell us more..."
+                    rows={6}
+                  />
+                </div>
+                <Button type="submit" size="lg" className="w-full">
+                  Send Message
                 </Button>
-              </Link>
-              <a 
-                href="https://forms.gle/your-survey-link" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  Take Our Survey
-                </Button>
-              </a>
+              </form>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Email</h4>
+                      <p className="text-muted-foreground">contact@frugality.finance</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Phone</h4>
+                      <p className="text-muted-foreground">+91 (XXX) XXX-XXXX</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Office</h4>
+                      <p className="text-muted-foreground">
+                        Bangalore, Karnataka<br />
+                        India
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-muted/50 p-6 rounded-xl">
+                <h4 className="font-semibold mb-3">Business Hours</h4>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                  <p>Saturday: 10:00 AM - 4:00 PM</p>
+                  <p>Sunday: Closed</p>
+                </div>
+              </div>
+
+              <div className="bg-secondary/5 border-l-4 border-secondary p-6 rounded-r-xl">
+                <h4 className="font-semibold mb-2">Take Our Survey</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Help us understand your financial needs better
+                </p>
+                <a 
+                  href="https://forms.gle/your-survey-link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" className="w-full">
+                    Take Survey
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
