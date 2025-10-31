@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/frugality-logo.png";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,9 +29,12 @@ const Navigation = () => {
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className="flex items-center space-x-2 cursor-pointer">
-            <span className="text-2xl">🐿️</span>
-            <span className="text-xl font-bold text-primary">Frugality Fintech</span>
+          <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className="flex items-center cursor-pointer">
+            <img 
+              src={logo} 
+              alt="Frugality Fintech Logo" 
+              className="h-10 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}

@@ -64,6 +64,24 @@ const Index = () => {
                   </Button>
                 </a>
               </div>
+              
+              {/* Survey CTA */}
+              <div className="mt-8 p-6 bg-gradient-to-r from-secondary/10 to-secondary/5 border-2 border-secondary/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in">
+                <h3 className="text-lg font-semibold mb-2">Share Your Insights</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Help us understand your financial needs better and shape the future of our platform
+                </p>
+                <a 
+                  href="https://forms.gle/your-survey-link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block w-full sm:w-auto"
+                >
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto shadow-md">
+                    Take Our Survey <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
             </div>
             <div className="relative">
               <img 
@@ -194,45 +212,85 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Handshake className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Strategic Alignment</h3>
-              <p className="text-sm text-muted-foreground">
-                Partner with a team that shares your vision for financial empowerment
-              </p>
-            </div>
+          {/* Horizontal Scrolling Card Carousel */}
+          <div className="relative mb-16">
+            <div className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+              <div className="flex gap-6 pb-4">
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Handshake className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Strategic Alignment</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Partner with a team that shares your vision for financial empowerment and long-term success
+                    </p>
+                  </div>
+                </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Target className="h-8 w-8 text-secondary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Mutual Growth</h3>
-              <p className="text-sm text-muted-foreground">
-                Grow together through collaborative innovation and shared success
-              </p>
-            </div>
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Target className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Mutual Growth</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Grow together through collaborative innovation and shared success in the fintech space
+                    </p>
+                  </div>
+                </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Innovation First</h3>
-              <p className="text-sm text-muted-foreground">
-                Leverage cutting-edge technology to deliver exceptional value
-              </p>
-            </div>
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Zap className="h-8 w-8 text-accent" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Innovation First</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Leverage cutting-edge technology to deliver exceptional value to your customers
+                    </p>
+                  </div>
+                </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Globe className="h-8 w-8 text-primary" />
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Globe className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Market Reach</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Access our growing user base and expand your impact across diverse markets
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Shield className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Trust & Security</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Built on a foundation of transparency, data security, and user trust
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
+                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                      <Users className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">User-Centric Approach</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Every decision we make is guided by what's best for our users and partners
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Market Reach</h3>
-              <p className="text-sm text-muted-foreground">
-                Access our growing user base and expand your impact
-              </p>
+            </div>
+            <div className="text-center mt-4 text-sm text-muted-foreground">
+              ← Scroll to explore our partnership benefits →
             </div>
           </div>
         </div>
@@ -376,21 +434,6 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-secondary/5 border-l-4 border-secondary p-6 rounded-r-xl">
-                <h4 className="font-semibold mb-2">Take Our Survey</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Help us understand your financial needs better
-                </p>
-                <a 
-                  href="https://forms.gle/your-survey-link" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" className="w-full">
-                    Take Survey
-                  </Button>
-                </a>
-              </div>
             </div>
           </div>
         </div>
