@@ -191,125 +191,249 @@ const Index = () => {
           </div>
 
           {/* Hover Tabs */}
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-3 gap-6 mb-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* Careers Tab */}
               <div
-                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                className={`group relative p-10 rounded-3xl cursor-pointer transition-all duration-700 ease-out ${
                   activeTab === "careers"
-                    ? "bg-primary/10 border-primary shadow-lg scale-105"
-                    : "bg-background border-border hover:border-primary/50 hover:-translate-y-2"
+                    ? "bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-2 border-primary shadow-2xl"
+                    : "bg-gradient-to-br from-background to-muted/30 border-2 border-border/50 hover:border-primary/30 shadow-lg"
+                } ${
+                  activeTab !== "careers" && activeTab !== null ? "-translate-y-4 scale-95 opacity-70" : ""
                 }`}
                 onMouseEnter={() => setActiveTab("careers")}
+                onMouseLeave={() => setActiveTab("careers")}
               >
                 <div className="text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
-                    activeTab === "careers" ? "bg-primary/20" : "bg-primary/10"
+                  <div className={`w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center transition-all duration-500 ${
+                    activeTab === "careers" 
+                      ? "bg-primary/30 scale-110 shadow-lg shadow-primary/20" 
+                      : "bg-primary/10 group-hover:bg-primary/20"
                   }`}>
-                    <Briefcase className={`h-8 w-8 transition-colors ${
-                      activeTab === "careers" ? "text-primary" : "text-primary/60"
+                    <Briefcase className={`h-10 w-10 transition-all duration-500 ${
+                      activeTab === "careers" ? "text-primary scale-110" : "text-primary/70 group-hover:text-primary"
                     }`} />
                   </div>
-                  <h3 className="text-xl font-semibold">Careers</h3>
+                  <h3 className={`text-2xl font-bold transition-all duration-500 ${
+                    activeTab === "careers" ? "text-primary" : ""
+                  }`}>Careers</h3>
+                  <p className={`text-sm mt-2 transition-all duration-500 ${
+                    activeTab === "careers" ? "text-foreground" : "text-muted-foreground"
+                  }`}>Join our innovative team</p>
                 </div>
               </div>
 
+              {/* Partnerships Tab */}
               <div
-                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                className={`group relative p-10 rounded-3xl cursor-pointer transition-all duration-700 ease-out ${
                   activeTab === "partnerships"
-                    ? "bg-secondary/10 border-secondary shadow-lg scale-105"
-                    : "bg-background border-border hover:border-secondary/50 hover:-translate-y-2"
+                    ? "bg-gradient-to-br from-secondary/20 via-secondary/10 to-secondary/5 border-2 border-secondary shadow-2xl"
+                    : "bg-gradient-to-br from-background to-muted/30 border-2 border-border/50 hover:border-secondary/30 shadow-lg"
+                } ${
+                  activeTab !== "partnerships" && activeTab !== null ? "-translate-y-4 scale-95 opacity-70" : ""
                 }`}
                 onMouseEnter={() => setActiveTab("partnerships")}
+                onMouseLeave={() => setActiveTab("careers")}
               >
                 <div className="text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
-                    activeTab === "partnerships" ? "bg-secondary/20" : "bg-secondary/10"
+                  <div className={`w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center transition-all duration-500 ${
+                    activeTab === "partnerships" 
+                      ? "bg-secondary/30 scale-110 shadow-lg shadow-secondary/20" 
+                      : "bg-secondary/10 group-hover:bg-secondary/20"
                   }`}>
-                    <Handshake className={`h-8 w-8 transition-colors ${
-                      activeTab === "partnerships" ? "text-secondary" : "text-secondary/60"
+                    <Handshake className={`h-10 w-10 transition-all duration-500 ${
+                      activeTab === "partnerships" ? "text-secondary scale-110" : "text-secondary/70 group-hover:text-secondary"
                     }`} />
                   </div>
-                  <h3 className="text-xl font-semibold">Partnerships</h3>
+                  <h3 className={`text-2xl font-bold transition-all duration-500 ${
+                    activeTab === "partnerships" ? "text-secondary" : ""
+                  }`}>Partnerships</h3>
+                  <p className={`text-sm mt-2 transition-all duration-500 ${
+                    activeTab === "partnerships" ? "text-foreground" : "text-muted-foreground"
+                  }`}>Grow together with us</p>
                 </div>
               </div>
 
+              {/* Collaborations Tab */}
               <div
-                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                className={`group relative p-10 rounded-3xl cursor-pointer transition-all duration-700 ease-out ${
                   activeTab === "collaborations"
-                    ? "bg-accent/10 border-accent shadow-lg scale-105"
-                    : "bg-background border-border hover:border-accent/50 hover:-translate-y-2"
+                    ? "bg-gradient-to-br from-accent/20 via-accent/10 to-accent/5 border-2 border-accent shadow-2xl"
+                    : "bg-gradient-to-br from-background to-muted/30 border-2 border-border/50 hover:border-accent/30 shadow-lg"
+                } ${
+                  activeTab !== "collaborations" && activeTab !== null ? "-translate-y-4 scale-95 opacity-70" : ""
                 }`}
                 onMouseEnter={() => setActiveTab("collaborations")}
+                onMouseLeave={() => setActiveTab("careers")}
               >
                 <div className="text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
-                    activeTab === "collaborations" ? "bg-accent/20" : "bg-accent/10"
+                  <div className={`w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center transition-all duration-500 ${
+                    activeTab === "collaborations" 
+                      ? "bg-accent/30 scale-110 shadow-lg shadow-accent/20" 
+                      : "bg-accent/10 group-hover:bg-accent/20"
                   }`}>
-                    <HeartHandshake className={`h-8 w-8 transition-colors ${
-                      activeTab === "collaborations" ? "text-accent" : "text-accent/60"
+                    <HeartHandshake className={`h-10 w-10 transition-all duration-500 ${
+                      activeTab === "collaborations" ? "text-accent scale-110" : "text-accent/70 group-hover:text-accent"
                     }`} />
                   </div>
-                  <h3 className="text-xl font-semibold">Collaborations</h3>
+                  <h3 className={`text-2xl font-bold transition-all duration-500 ${
+                    activeTab === "collaborations" ? "text-accent" : ""
+                  }`}>Collaborations</h3>
+                  <p className={`text-sm mt-2 transition-all duration-500 ${
+                    activeTab === "collaborations" ? "text-foreground" : "text-muted-foreground"
+                  }`}>Create impact together</p>
                 </div>
               </div>
             </div>
 
             {/* Content Area */}
-            <div className="bg-muted/30 rounded-2xl p-8 min-h-[400px] transition-all duration-500">
+            <div className="bg-gradient-to-br from-muted/50 to-muted/20 backdrop-blur-sm rounded-3xl p-10 border-2 border-border/50 min-h-[500px] transition-all duration-500 shadow-xl">
               {activeTab === "careers" && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-semibold mb-6">Open Positions</h3>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center">
+                      <Briefcase className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-3xl font-bold">Open Positions</h3>
+                  </div>
                   <JobListing />
                 </div>
               )}
 
               {activeTab === "partnerships" && (
                 <div className="animate-fade-in">
-                  <h3 className="text-2xl font-semibold mb-6">Partnership Opportunities</h3>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center">
+                      <Handshake className="h-6 w-6 text-secondary" />
+                    </div>
+                    <h3 className="text-3xl font-bold">Partnership Opportunities</h3>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-background border rounded-xl p-6">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                        <Target className="h-6 w-6 text-secondary" />
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                      <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                        <Target className="h-7 w-7 text-secondary" />
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Strategic Alignment</h4>
-                      <p className="text-muted-foreground">
+                      <h4 className="text-xl font-semibold mb-3">Strategic Alignment</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Partner with a team that shares your vision for financial empowerment and long-term success.
                       </p>
                     </div>
-                    <div className="bg-background border rounded-xl p-6">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                        <TrendingUp className="h-6 w-6 text-secondary" />
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                      <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                        <TrendingUp className="h-7 w-7 text-secondary" />
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Mutual Growth</h4>
-                      <p className="text-muted-foreground">
+                      <h4 className="text-xl font-semibold mb-3">Mutual Growth</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Grow together through collaborative innovation and shared success in the fintech space.
                       </p>
                     </div>
-                    <div className="bg-background border rounded-xl p-6">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                        <Globe className="h-6 w-6 text-secondary" />
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                      <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                        <Globe className="h-7 w-7 text-secondary" />
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Market Reach</h4>
-                      <p className="text-muted-foreground">
+                      <h4 className="text-xl font-semibold mb-3">Market Reach</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Access our growing user base and expand your impact across diverse markets.
                       </p>
                     </div>
-                    <div className="bg-background border rounded-xl p-6">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                        <Shield className="h-6 w-6 text-secondary" />
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                      <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
+                        <Shield className="h-7 w-7 text-secondary" />
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Trust & Security</h4>
-                      <p className="text-muted-foreground">
+                      <h4 className="text-xl font-semibold mb-3">Trust & Security</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Built on a foundation of transparency, data security, and user trust.
                       </p>
                     </div>
                   </div>
-                  <div className="mt-8 text-center">
-                    <Button size="lg" onClick={() => {
+                  <div className="mt-10 text-center">
+                    <Button size="lg" className="shadow-lg" onClick={() => {
                       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     }}>
-                      Get in Touch
+                      Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "collaborations" && (
+                <div className="animate-fade-in">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-12 h-12 bg-accent/20 rounded-2xl flex items-center justify-center">
+                      <HeartHandshake className="h-6 w-6 text-accent" />
+                    </div>
+                    <h3 className="text-3xl font-bold">Collaboration Opportunities</h3>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-accent/50 transition-all duration-300 hover:shadow-lg">
+                      <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <Zap className="h-5 w-5 text-accent" />
+                        Research & Development
+                      </h4>
+                      <p className="text-muted-foreground mb-5 leading-relaxed">
+                        Collaborate with us on cutting-edge fintech research, exploring new technologies and methodologies 
+                        to enhance financial awareness and decision-making.
+                      </p>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>AI-driven financial insights</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>Behavioral finance studies</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>Data security innovations</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-accent/50 transition-all duration-300 hover:shadow-lg">
+                      <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <Users className="h-5 w-5 text-accent" />
+                        Content & Education
+                      </h4>
+                      <p className="text-muted-foreground mb-5 leading-relaxed">
+                        Work together to create educational content that promotes financial literacy and empowers users 
+                        to make informed decisions.
+                      </p>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>Financial education programs</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>Webinars and workshops</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent text-lg">•</span>
+                          <span>Community outreach initiatives</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-accent/50 transition-all duration-300 hover:shadow-lg">
+                      <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <Globe className="h-5 w-5 text-accent" />
+                        Technology Integration
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Integrate your technology or services with our platform to deliver enhanced value to users 
+                        and create seamless experiences.
+                      </p>
+                    </div>
+
+                    <div className="mt-10 text-center">
+                      <Button size="lg" className="shadow-lg" onClick={() => {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}>
+                        Discuss Collaboration <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
