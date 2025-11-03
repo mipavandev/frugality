@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import ProductCarousel from "@/components/ProductCarousel";
 import JobListing from "@/components/JobListing";
 import heroImage from "@/assets/hero-image.jpg";
-import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone, Briefcase, HeartHandshake } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -18,6 +19,8 @@ const Index = () => {
     subject: "",
     message: "",
   });
+
+  const [activeTab, setActiveTab] = useState<"careers" | "partnerships" | "collaborations">("careers");
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +36,13 @@ const Index = () => {
     <div className="min-h-screen flex flex-col scroll-smooth">
       <Navigation />
       
+      {/* Product Slider - At Top */}
+      <section id="product" className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <ProductCarousel />
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section id="home" className="relative overflow-hidden py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,203 +104,282 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section with Accordion */}
       <section id="about" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">About Us</h2>
-          
-          <div className="space-y-8 text-lg leading-relaxed">
-            <div className="text-center mb-12">
-              <span className="text-6xl mb-4 inline-block">🐿️</span>
-            </div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="about-us" className="border rounded-xl bg-background px-6">
+              <AccordionTrigger className="text-3xl md:text-4xl font-bold hover:no-underline py-6">
+                About Us
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-8 text-lg leading-relaxed pt-4 pb-6">
+                  <div className="text-center mb-12">
+                    <span className="text-6xl mb-4 inline-block">🐿️</span>
+                  </div>
 
-            <p>
-              We at <span className="font-semibold text-primary">Frugality Fintech</span> are a small team, 
-              a modest setup, and a clear vision: to redefine how individuals engage with their finances — 
-              with clarity, purpose, and control.
-            </p>
+                  <p>
+                    We at <span className="font-semibold text-primary">Frugality Fintech</span> are a small team, 
+                    a modest setup, and a clear vision: to redefine how individuals engage with their finances — 
+                    with clarity, purpose, and control.
+                  </p>
 
-            <p>
-              Our journey is rooted in a simple belief: that <span className="font-semibold">financial awareness 
-              is not a luxury, but a necessity.</span>
-            </p>
+                  <p>
+                    Our journey is rooted in a simple belief: that <span className="font-semibold">financial awareness 
+                    is not a luxury, but a necessity.</span>
+                  </p>
 
-            <p>
-              We draw inspiration from the squirrel — a symbol of foresight and preparation — holding its 
-              acorn as a reminder that saving during times of abundance is the key to long-term resilience.
-            </p>
+                  <p>
+                    We draw inspiration from the squirrel — a symbol of foresight and preparation — holding its 
+                    acorn as a reminder that saving during times of abundance is the key to long-term resilience.
+                  </p>
 
-            <div className="bg-background border p-8 rounded-xl my-12">
-              <h3 className="text-2xl font-semibold mb-6 text-center">We Believe</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 text-xl">•</span>
-                  <span>That every drop counts.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 text-xl">•</span>
-                  <span>That every payment is a decision.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 text-xl">•</span>
-                  <span>That every card swipe is a strategy.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 text-xl">•</span>
-                  <span>And that every rupee deserves its return.</span>
-                </li>
-              </ul>
-            </div>
+                  <div className="bg-muted border p-8 rounded-xl my-12">
+                    <h3 className="text-2xl font-semibold mb-6 text-center">We Believe</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
+                        <span className="text-primary mr-3 text-xl">•</span>
+                        <span>That every drop counts.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-3 text-xl">•</span>
+                        <span>That every payment is a decision.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-3 text-xl">•</span>
+                        <span>That every card swipe is a strategy.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-3 text-xl">•</span>
+                        <span>And that every rupee deserves its return.</span>
+                      </li>
+                    </ul>
+                  </div>
 
-            <p>
-              Our mission is to empower individuals to be <span className="font-semibold">frugal, not stingy</span> — 
-              to make informed, intentional choices without compromise.
-            </p>
+                  <p>
+                    Our mission is to empower individuals to be <span className="font-semibold">frugal, not stingy</span> — 
+                    to make informed, intentional choices without compromise.
+                  </p>
 
-            <p>
-              We are building a platform that enables smarter financial behaviour, supported by data, 
-              driven by intelligence, and anchored in trust.
-            </p>
+                  <p>
+                    We are building a platform that enables smarter financial behaviour, supported by data, 
+                    driven by intelligence, and anchored in trust.
+                  </p>
 
-            <div className="bg-secondary/5 border-l-4 border-secondary p-6 rounded-r-xl my-12">
-              <p className="text-xl font-medium">
-                At Frugality we are building not just a product. We intend to build a mindset — 
-                one that transforms how people think about money, plan for the future, and take control 
-                of their financial journey, one penny at a time.
-              </p>
-            </div>
-          </div>
+                  <div className="bg-secondary/5 border-l-4 border-secondary p-6 rounded-r-xl my-12">
+                    <p className="text-xl font-medium">
+                      At Frugality we are building not just a product. We intend to build a mindset — 
+                      one that transforms how people think about money, plan for the future, and take control 
+                      of their financial journey, one penny at a time.
+                    </p>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
-      {/* Product Section */}
-      <section id="product" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Product</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              We're building an exceptional financial awareness platform. Here's a preview of what's coming.
-            </p>
-          </div>
-          <ProductCarousel />
-          <div className="text-center mt-12">
-            <p className="text-xl font-semibold text-muted-foreground mb-4">
-              Currently Under Development
-            </p>
-            <p className="text-muted-foreground mb-8">
-              Stay tuned for a platform that will transform how you engage with your finances.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Careers Section */}
-      <section id="careers" className="py-20 bg-muted/30">
+      {/* Work With Us Section */}
+      <section id="work-with-us" className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Join Our Team</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Work With Us</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Help us build the future of financial awareness. We're looking for passionate 
-              individuals who believe in making finance accessible to everyone.
+              Explore opportunities to join our team, partner with us, or collaborate on exciting projects.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <JobListing />
-          </div>
-        </div>
-      </section>
-
-      {/* Partnerships Section */}
-      <section id="partnerships" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Partner With Us</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Together, we can empower millions to take control of their financial future. 
-              Let's build something meaningful.
-            </p>
-          </div>
-
-          {/* Horizontal Scrolling Card Carousel */}
-          <div className="relative mb-16">
-            <div className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
-              <div className="flex gap-6 pb-4">
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Handshake className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Strategic Alignment</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Partner with a team that shares your vision for financial empowerment and long-term success
-                    </p>
+          {/* Hover Tabs */}
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 mb-12">
+              <div
+                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                  activeTab === "careers"
+                    ? "bg-primary/10 border-primary shadow-lg scale-105"
+                    : "bg-background border-border hover:border-primary/50 hover:-translate-y-2"
+                }`}
+                onMouseEnter={() => setActiveTab("careers")}
+              >
+                <div className="text-center">
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
+                    activeTab === "careers" ? "bg-primary/20" : "bg-primary/10"
+                  }`}>
+                    <Briefcase className={`h-8 w-8 transition-colors ${
+                      activeTab === "careers" ? "text-primary" : "text-primary/60"
+                    }`} />
                   </div>
+                  <h3 className="text-xl font-semibold">Careers</h3>
                 </div>
+              </div>
 
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Target className="h-8 w-8 text-secondary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Mutual Growth</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Grow together through collaborative innovation and shared success in the fintech space
-                    </p>
+              <div
+                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                  activeTab === "partnerships"
+                    ? "bg-secondary/10 border-secondary shadow-lg scale-105"
+                    : "bg-background border-border hover:border-secondary/50 hover:-translate-y-2"
+                }`}
+                onMouseEnter={() => setActiveTab("partnerships")}
+              >
+                <div className="text-center">
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
+                    activeTab === "partnerships" ? "bg-secondary/20" : "bg-secondary/10"
+                  }`}>
+                    <Handshake className={`h-8 w-8 transition-colors ${
+                      activeTab === "partnerships" ? "text-secondary" : "text-secondary/60"
+                    }`} />
                   </div>
+                  <h3 className="text-xl font-semibold">Partnerships</h3>
                 </div>
+              </div>
 
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Zap className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Innovation First</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Leverage cutting-edge technology to deliver exceptional value to your customers
-                    </p>
+              <div
+                className={`relative p-8 rounded-2xl border-2 cursor-pointer transition-all duration-500 ${
+                  activeTab === "collaborations"
+                    ? "bg-accent/10 border-accent shadow-lg scale-105"
+                    : "bg-background border-border hover:border-accent/50 hover:-translate-y-2"
+                }`}
+                onMouseEnter={() => setActiveTab("collaborations")}
+              >
+                <div className="text-center">
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-colors ${
+                    activeTab === "collaborations" ? "bg-accent/20" : "bg-accent/10"
+                  }`}>
+                    <HeartHandshake className={`h-8 w-8 transition-colors ${
+                      activeTab === "collaborations" ? "text-accent" : "text-accent/60"
+                    }`} />
                   </div>
-                </div>
-
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Globe className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Market Reach</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Access our growing user base and expand your impact across diverse markets
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Shield className="h-8 w-8 text-secondary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Trust & Security</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Built on a foundation of transparency, data security, and user trust
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex-none w-[280px] sm:w-[320px] snap-start">
-                  <div className="h-full bg-background border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                      <Users className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">User-Centric Approach</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Every decision we make is guided by what's best for our users and partners
-                    </p>
-                  </div>
+                  <h3 className="text-xl font-semibold">Collaborations</h3>
                 </div>
               </div>
             </div>
-            <div className="text-center mt-4 text-sm text-muted-foreground">
-              ← Scroll to explore our partnership benefits →
+
+            {/* Content Area */}
+            <div className="bg-muted/30 rounded-2xl p-8 min-h-[400px] transition-all duration-500">
+              {activeTab === "careers" && (
+                <div className="animate-fade-in">
+                  <h3 className="text-2xl font-semibold mb-6">Open Positions</h3>
+                  <JobListing />
+                </div>
+              )}
+
+              {activeTab === "partnerships" && (
+                <div className="animate-fade-in">
+                  <h3 className="text-2xl font-semibold mb-6">Partnership Opportunities</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-background border rounded-xl p-6">
+                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+                        <Target className="h-6 w-6 text-secondary" />
+                      </div>
+                      <h4 className="text-lg font-semibold mb-2">Strategic Alignment</h4>
+                      <p className="text-muted-foreground">
+                        Partner with a team that shares your vision for financial empowerment and long-term success.
+                      </p>
+                    </div>
+                    <div className="bg-background border rounded-xl p-6">
+                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+                        <TrendingUp className="h-6 w-6 text-secondary" />
+                      </div>
+                      <h4 className="text-lg font-semibold mb-2">Mutual Growth</h4>
+                      <p className="text-muted-foreground">
+                        Grow together through collaborative innovation and shared success in the fintech space.
+                      </p>
+                    </div>
+                    <div className="bg-background border rounded-xl p-6">
+                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+                        <Globe className="h-6 w-6 text-secondary" />
+                      </div>
+                      <h4 className="text-lg font-semibold mb-2">Market Reach</h4>
+                      <p className="text-muted-foreground">
+                        Access our growing user base and expand your impact across diverse markets.
+                      </p>
+                    </div>
+                    <div className="bg-background border rounded-xl p-6">
+                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+                        <Shield className="h-6 w-6 text-secondary" />
+                      </div>
+                      <h4 className="text-lg font-semibold mb-2">Trust & Security</h4>
+                      <p className="text-muted-foreground">
+                        Built on a foundation of transparency, data security, and user trust.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-8 text-center">
+                    <Button size="lg" onClick={() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}>
+                      Get in Touch
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "collaborations" && (
+                <div className="animate-fade-in">
+                  <h3 className="text-2xl font-semibold mb-6">Collaboration Opportunities</h3>
+                  <div className="space-y-6">
+                    <div className="bg-background border rounded-xl p-6">
+                      <h4 className="text-lg font-semibold mb-3">Research & Development</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Collaborate with us on cutting-edge fintech research, exploring new technologies and methodologies 
+                        to enhance financial awareness and decision-making.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>AI-driven financial insights</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>Behavioral finance studies</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>Data security innovations</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-background border rounded-xl p-6">
+                      <h4 className="text-lg font-semibold mb-3">Content & Education</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Work together to create educational content that promotes financial literacy and empowers users 
+                        to make informed decisions.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>Financial education programs</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>Webinars and workshops</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          <span>Community outreach initiatives</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-background border rounded-xl p-6">
+                      <h4 className="text-lg font-semibold mb-3">Technology Integration</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Integrate your technology or services with our platform to deliver enhanced value to users 
+                        and create seamless experiences.
+                      </p>
+                    </div>
+
+                    <div className="mt-8 text-center">
+                      <Button size="lg" onClick={() => {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}>
+                        Discuss Collaboration
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
