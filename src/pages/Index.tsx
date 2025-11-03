@@ -9,7 +9,7 @@ import ProductCarousel from "@/components/ProductCarousel";
 import JobListing from "@/components/JobListing";
 import heroImage from "@/assets/hero-image.jpg";
 import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone, Briefcase, HeartHandshake } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -20,7 +20,26 @@ const Index = () => {
     message: "",
   });
 
-  const [activeTab, setActiveTab] = useState<"careers" | "partnerships" | "collaborations">("careers");
+  const [activeTab, setActiveTab] = useState<"careers" | "partnerships" | "collaborations" | null>(null);
+  const [isHoveringContent, setIsHoveringContent] = useState(false);
+
+  // Reset activeTab when scrolling away from Work With Us section
+  useEffect(() => {
+    const handleScroll = () => {
+      const workWithUsSection = document.getElementById('work-with-us');
+      if (!workWithUsSection) return;
+
+      const rect = workWithUsSection.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (!isInView && !isHoveringContent) {
+        setActiveTab(null);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHoveringContent]);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
