@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { toast } from "sonner";
 
 interface Job {
@@ -74,70 +75,82 @@ const JobListing = () => {
 
   return (
     <Accordion type="single" collapsible className="space-y-4">
-      {jobs.map((job) => (
-        <AccordionItem key={job.id} value={job.id} className="bg-background border rounded-xl px-6">
-          <AccordionTrigger className="text-left hover:no-underline py-6">
-            <span className="text-xl font-semibold">{job.title}</span>
-          </AccordionTrigger>
-          <AccordionContent className="pb-6">
-            <p className="text-muted-foreground mb-6">{job.description}</p>
-            
-            <form onSubmit={(e) => handleSubmit(e, job.id)} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+      {jobs.map((job, index) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const animation = useScrollAnimation();
+        return (
+          <AccordionItem 
+            key={job.id} 
+            value={job.id} 
+            ref={animation.ref}
+            className={`bg-background border rounded-xl px-6 transition-all duration-700 ${
+              animation.isVisible ? 'opacity-100 animate-fade-in-up' : 'opacity-0'
+            }`}
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <AccordionTrigger className="text-left hover:no-underline py-6">
+              <span className="text-xl font-semibold">{job.title}</span>
+            </AccordionTrigger>
+            <AccordionContent className="pb-6">
+              <p className="text-muted-foreground mb-6">{job.description}</p>
+              
+              <form onSubmit={(e) => handleSubmit(e, job.id)} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor={`email-${job.id}`}>Email</Label>
+                    <Input
+                      id={`email-${job.id}`}
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData[job.id]?.email || ""}
+                      onChange={(e) => handleChange(job.id, "email", e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor={`phone-${job.id}`}>Phone Number</Label>
+                    <Input
+                      id={`phone-${job.id}`}
+                      type="tel"
+                      placeholder="+91 XXXXX XXXXX"
+                      value={formData[job.id]?.phone || ""}
+                      onChange={(e) => handleChange(job.id, "phone", e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                
                 <div>
-                  <Label htmlFor={`email-${job.id}`}>Email</Label>
-                  <Input
-                    id={`email-${job.id}`}
-                    type="email"
-                    placeholder="your.email@example.com"
-                    value={formData[job.id]?.email || ""}
-                    onChange={(e) => handleChange(job.id, "email", e.target.value)}
+                  <Label htmlFor={`cover-letter-${job.id}`}>Cover Letter</Label>
+                  <Textarea
+                    id={`cover-letter-${job.id}`}
+                    placeholder="Tell us why you're interested in this role..."
+                    rows={4}
+                    value={formData[job.id]?.coverLetter || ""}
+                    onChange={(e) => handleChange(job.id, "coverLetter", e.target.value)}
                     required
                   />
                 </div>
+                
                 <div>
-                  <Label htmlFor={`phone-${job.id}`}>Phone Number</Label>
+                  <Label htmlFor={`resume-${job.id}`}>Resume (PDF, DOC, or DOCX)</Label>
                   <Input
-                    id={`phone-${job.id}`}
-                    type="tel"
-                    placeholder="+91 XXXXX XXXXX"
-                    value={formData[job.id]?.phone || ""}
-                    onChange={(e) => handleChange(job.id, "phone", e.target.value)}
+                    id={`resume-${job.id}`}
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => handleFileChange(job.id, e.target.files?.[0] || null)}
                     required
                   />
                 </div>
-              </div>
-              
-              <div>
-                <Label htmlFor={`cover-letter-${job.id}`}>Cover Letter</Label>
-                <Textarea
-                  id={`cover-letter-${job.id}`}
-                  placeholder="Tell us why you're interested in this role..."
-                  rows={4}
-                  value={formData[job.id]?.coverLetter || ""}
-                  onChange={(e) => handleChange(job.id, "coverLetter", e.target.value)}
-                  required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor={`resume-${job.id}`}>Resume (PDF, DOC, or DOCX)</Label>
-                <Input
-                  id={`resume-${job.id}`}
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={(e) => handleFileChange(job.id, e.target.files?.[0] || null)}
-                  required
-                />
-              </div>
-              
-              <Button type="submit" size="lg" className="w-full">
-                Apply Now
-              </Button>
-            </form>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
+                
+                <Button type="submit" size="lg" className="w-full">
+                  Apply Now
+                </Button>
+              </form>
+            </AccordionContent>
+          </AccordionItem>
+        );
+      })}
     </Accordion>
   );
 };

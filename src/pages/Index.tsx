@@ -23,6 +23,18 @@ const Index = () => {
 
   const [activeTab, setActiveTab] = useState<"careers" | "partnerships" | "collaborations" | null>(null);
   const [isHoveringContent, setIsHoveringContent] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Parallax effect for hero image
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      setParallaxOffset(scrolled * 0.5);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Reset activeTab when scrolling away from Work With Us section
   useEffect(() => {
@@ -126,14 +138,20 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            <div className={`relative transition-all duration-1000 animation-delay-300 ${
+            <div className={`relative overflow-hidden transition-all duration-1000 animation-delay-300 ${
               heroAnimation.isVisible ? "opacity-100 animate-fade-in-right" : "opacity-0"
             }`}>
-              <img 
-                src={heroImage} 
-                alt="Frugality Fintech - Financial Awareness Platform" 
-                className="rounded-2xl shadow-2xl"
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={heroImage} 
+                  alt="Frugality Fintech - Financial Awareness Platform" 
+                  className="rounded-2xl w-full"
+                  style={{ 
+                    transform: `translateY(${parallaxOffset}px)`,
+                    transition: 'transform 0.1s ease-out'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -351,7 +369,7 @@ const Index = () => {
                     <h3 className="text-3xl font-bold">Partnership Opportunities</h3>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-2 opacity-0 animate-fade-in-up animation-delay-100">
                       <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
                         <Target className="h-7 w-7 text-secondary" />
                       </div>
@@ -360,7 +378,7 @@ const Index = () => {
                         Partner with a team that shares your vision for financial empowerment and long-term success.
                       </p>
                     </div>
-                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-2 opacity-0 animate-fade-in-up animation-delay-200">
                       <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
                         <TrendingUp className="h-7 w-7 text-secondary" />
                       </div>
@@ -369,7 +387,7 @@ const Index = () => {
                         Grow together through collaborative innovation and shared success in the fintech space.
                       </p>
                     </div>
-                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg">
+                    <div className="bg-background/80 backdrop-blur border-2 border-border/50 rounded-2xl p-8 hover:border-secondary/50 transition-all duration-500 hover:shadow-lg hover:-translate-y-2 opacity-0 animate-fade-in-up animation-delay-300">
                       <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4">
                         <Globe className="h-7 w-7 text-secondary" />
                       </div>
