@@ -11,6 +11,7 @@ import heroImage from "@/assets/hero-image.jpg";
 import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone, Briefcase, HeartHandshake } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTypingAnimation } from "@/hooks/useTypingAnimation";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -71,6 +72,10 @@ const Index = () => {
   const supportAnimation = useScrollAnimation();
   const contactAnimation = useScrollAnimation();
 
+  // Typing animation for hero title
+  const { displayedText: typedText, isComplete } = useTypingAnimation("Redefine Your Financial Journey", 80, 300);
+
+
   return (
     <div className="min-h-screen flex flex-col scroll-smooth">
       <Navigation />
@@ -90,8 +95,10 @@ const Index = () => {
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-1000 ${
                 heroAnimation.isVisible ? "opacity-100 animate-fade-in-left" : "opacity-0"
               }`}>
-                Redefine Your
-                <span className="text-primary"> Financial Journey</span>
+                <span className="inline-block">
+                  {typedText}
+                  {!isComplete && <span className="inline-block w-1 h-12 bg-primary ml-1 animate-pulse"></span>}
+                </span>
               </h1>
               <p className={`text-lg text-muted-foreground max-w-xl transition-all duration-1000 animation-delay-200 ${
                 heroAnimation.isVisible ? "opacity-100 animate-fade-in-left" : "opacity-0"
