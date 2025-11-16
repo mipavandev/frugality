@@ -10,6 +10,7 @@ import JobListing from "@/components/JobListing";
 import heroImage from "@/assets/hero-image.jpg";
 import { ArrowRight, Shield, TrendingUp, Users, Handshake, Target, Zap, Globe, Mail, MapPin, Phone, Briefcase, HeartHandshake } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -51,6 +52,13 @@ const Index = () => {
     setContactForm({ ...contactForm, [e.target.name]: e.target.value });
   };
 
+  // Scroll animations
+  const heroAnimation = useScrollAnimation();
+  const aboutAnimation = useScrollAnimation();
+  const workWithUsAnimation = useScrollAnimation();
+  const supportAnimation = useScrollAnimation();
+  const contactAnimation = useScrollAnimation();
+
   return (
     <div className="min-h-screen flex flex-col scroll-smooth">
       <Navigation />
@@ -65,17 +73,23 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="relative overflow-hidden py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div ref={heroAnimation.ref} className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-1000 ${
+                heroAnimation.isVisible ? "opacity-100 animate-fade-in-left" : "opacity-0"
+              }`}>
                 Redefine Your
                 <span className="text-primary"> Financial Journey</span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-xl">
+              <p className={`text-lg text-muted-foreground max-w-xl transition-all duration-1000 animation-delay-200 ${
+                heroAnimation.isVisible ? "opacity-100 animate-fade-in-left" : "opacity-0"
+              }`}>
                 Every payment is a decision. Every rupee deserves its return. 
                 We empower you to be frugal, not stingy — making informed, intentional choices without compromise.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 animation-delay-400 ${
+                heroAnimation.isVisible ? "opacity-100 animate-fade-in-left" : "opacity-0"
+              }`}>
                 <a href="#product">
                   <Button size="lg" className="w-full sm:w-auto" onClick={(e) => {
                     e.preventDefault();
@@ -112,7 +126,9 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            <div className="relative">
+            <div className={`relative transition-all duration-1000 animation-delay-300 ${
+              heroAnimation.isVisible ? "opacity-100 animate-fade-in-right" : "opacity-0"
+            }`}>
               <img 
                 src={heroImage} 
                 alt="Frugality Fintech - Financial Awareness Platform" 
@@ -125,7 +141,9 @@ const Index = () => {
 
       {/* About Section with Accordion */}
       <section id="about" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <div ref={aboutAnimation.ref} className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl transition-all duration-1000 ${
+          aboutAnimation.isVisible ? "opacity-100 animate-scale-in" : "opacity-0"
+        }`}>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="about-us" className="border rounded-xl bg-background px-6">
               <AccordionTrigger className="text-3xl md:text-4xl font-bold hover:no-underline py-6">
@@ -201,8 +219,10 @@ const Index = () => {
 
       {/* Work With Us Section */}
       <section id="work-with-us" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+        <div ref={workWithUsAnimation.ref} className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transition-all duration-1000 ${
+            workWithUsAnimation.isVisible ? "opacity-100 animate-fade-in-up" : "opacity-0"
+          }`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Work With Us</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore opportunities to join our team, partner with us, or collaborate on exciting projects.
@@ -210,7 +230,9 @@ const Index = () => {
           </div>
 
           {/* Hover Tabs */}
-          <div className="max-w-6xl mx-auto">
+          <div className={`max-w-6xl mx-auto transition-all duration-1000 animation-delay-200 ${
+            workWithUsAnimation.isVisible ? "opacity-100 animate-fade-in-up" : "opacity-0"
+          }`}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {/* Careers Tab */}
               <div
@@ -530,15 +552,19 @@ const Index = () => {
 
       {/* Support/FAQ Section */}
       <section id="support" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+        <div ref={supportAnimation.ref} className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transition-all duration-1000 ${
+            supportAnimation.isVisible ? "opacity-100 animate-fade-in-up" : "opacity-0"
+          }`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Support</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have questions? We're here to help you on your financial journey.
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto text-center">
+          <div className={`max-w-3xl mx-auto text-center transition-all duration-1000 animation-delay-200 ${
+            supportAnimation.isVisible ? "opacity-100 animate-scale-in" : "opacity-0"
+          }`}>
             <p className="text-lg text-muted-foreground mb-8">
               Our support team is available to assist you with any questions about our platform, 
               features, or how to get started on your journey to financial clarity.
@@ -554,15 +580,19 @@ const Index = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <div className="text-center mb-12">
+        <div ref={contactAnimation.ref} className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className={`text-center mb-12 transition-all duration-1000 ${
+            contactAnimation.isVisible ? "opacity-100 animate-fade-in-up" : "opacity-0"
+          }`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have questions or want to learn more about Frugality Fintech? We'd love to hear from you.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className={`grid lg:grid-cols-2 gap-12 transition-all duration-1000 animation-delay-200 ${
+            contactAnimation.isVisible ? "opacity-100 animate-fade-in-up" : "opacity-0"
+          }`}>
             <div>
               <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
               <form onSubmit={handleContactSubmit} className="space-y-6">
