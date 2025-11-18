@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import Product3DCarousel from "@/components/Product3DCarousel";
 import { Check, Sparkles, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -68,67 +67,9 @@ const Product = () => {
               </div>
             </div>
 
-            {/* Right Side - Vertical Carousel */}
-            <div className="relative flex items-center justify-center">
-              <Carousel
-                opts={{
-                  align: "center",
-                  loop: true,
-                  axis: "y",
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 3000,
-                  }),
-                ]}
-                className="w-full max-w-sm"
-                orientation="vertical"
-              >
-                <CarouselContent className="h-[600px]">
-                  {mockupScreens.map((screen, index) => (
-                    <CarouselItem key={index} className="pt-4">
-                      <div className="relative mx-auto w-[280px] h-[560px]">
-                        {/* Phone Frame */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-foreground/90 to-foreground rounded-[3rem] shadow-2xl">
-                          {/* Notch */}
-                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-background rounded-b-3xl" />
-                          
-                          {/* Screen Content */}
-                          <div className="absolute inset-4 top-8 bg-gradient-to-br rounded-[2.5rem] overflow-hidden shadow-inner">
-                            <div className={`absolute inset-0 bg-gradient-to-br ${screen.color}`} />
-                            <div className="relative h-full flex flex-col items-center justify-center p-6 text-center">
-                              <div className="mb-4 p-4 rounded-full bg-background/20 backdrop-blur-sm">
-                                <Sparkles className="w-12 h-12 text-primary" />
-                              </div>
-                              <h3 className="text-2xl font-bold mb-2">{screen.label}</h3>
-                              <p className="text-sm text-muted-foreground">
-                                Experience seamless financial management
-                              </p>
-                              
-                              {/* Mock UI Elements */}
-                              <div className="mt-8 space-y-3 w-full">
-                                {[1, 2, 3].map((i) => (
-                                  <div 
-                                    key={i}
-                                    className="h-16 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 animate-pulse"
-                                    style={{ animationDelay: `${i * 200}ms` }}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Home Indicator */}
-                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-background/50 rounded-full" />
-                        </div>
-                        
-                        {/* Glow Effect */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${screen.color} blur-3xl opacity-50 -z-10`} />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
+            {/* Right Side - 3D Carousel */}
+            <div className="relative">
+              <Product3DCarousel />
             </div>
           </div>
         </div>
