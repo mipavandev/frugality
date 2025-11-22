@@ -18,7 +18,7 @@ const Product = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-[#0A3052]/5">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-[#0A3052]/5 overflow-x-hidden">
       <Navigation />
       
       <main className="flex-1 relative overflow-hidden">
@@ -75,7 +75,7 @@ const Product = () => {
             </div>
 
             {/* Right Side - 3D Carousel */}
-            <div className="relative">
+            <div className="relative overflow-hidden">
               <Product3DCarousel />
             </div>
           </div>
