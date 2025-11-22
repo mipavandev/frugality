@@ -170,7 +170,7 @@ const Product3DCarousel = () => {
       onTouchEnd={handleTouchEnd}
     >
       {/* Carousel Container */}
-      <div className="relative h-[420px] sm:h-[480px] md:h-[520px] flex items-center justify-center overflow-hidden px-4 sm:px-6 max-w-full mx-auto">
+      <div className="relative h-[420px] sm:h-[480px] md:h-[520px] flex items-center justify-center px-4 sm:px-6">
         {/* Gradient Glow Background - Premium glassmorphism effect */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] bg-gradient-to-br from-[#0A3052]/30 via-[#0A3052]/10 to-transparent blur-3xl rounded-full animate-pulse" 
