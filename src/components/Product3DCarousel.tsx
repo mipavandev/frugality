@@ -122,9 +122,9 @@ const Product3DCarousel = () => {
   };
 
   return (
-    <div className="relative w-full py-12">
+    <div className="relative w-full py-12 overflow-hidden">
       {/* Carousel Container */}
-      <div className="relative h-[520px] flex items-center justify-center">
+      <div className="relative h-[520px] flex items-center justify-center overflow-hidden">
         {/* Gradient Glow Background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-[400px] h-[400px] bg-gradient-to-br from-[#0A3052]/30 via-transparent to-[#0A3052]/20 blur-3xl rounded-full" />
